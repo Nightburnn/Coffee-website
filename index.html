@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, inital-scale=1.0">
+	<title>Responsive Coffee Website</title>
+
+
+
+
+
+
+
+	<!-- Link To CSS -->
+	  <link rel="stylesheet"
+  href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
+</head>
+<style>
+    
+/* Google Fonts */
+
+@import url('https://fonts.googleapis.com/css2?family=Work+Sans:wght@300&display=swap');
+*{
+font-family: 'Work Sans', sans-serif;
+margin: 0;
+padding: 0;
+box-sizing: border-box;
+scroll-padding-top: 4rem;
+scroll-behavior: smooth;
+list-style: none;
+text-decoration: none;
+
+}
+/* Variables */
+:root{
+--main-color: #bc9667;
+--second-color: #edeae3;
+--text-color: #1b1b1b;
+--bg-color: #fff;
+/* Box Shadow */
+--box-shadow: 2px 2px 10px 4px rgb(14 55 54 / 15%);
+}
+section{
+padding: 50px 100px;
+}
+img{
+width: 100%;
+}
+body{
+color: var(--text-color);
+}
+header{
+position: fixed;
+width: 100%;
+top: 0;
+right: 0;
+z-index: 1000;
+display: flex;
+justify-content: space-between;
+align-items: center;
+padding: 18px 100px;
+transition: 0.5s linear;
+}
+header.shadow{
+background: var(--text-color);
+box-shadow: var(--box-shadow);
+}
+.logo img{
+width: 60px;
+}
+.navbar{
+display: flex;
+}
+.navbar a{
+padding: 8px 17px;
+color: var(--bg-color);
+font-size: 1rem;
+text-transform: uppercase;
+font-weight: 500;
+}
+.navbar a:hover{
+background: var(--main-color);
+border-radius: 0.2rem;
+transition: 0.2s all linear;
+}
+.header-icon{
+font-size: 22px;
+cursor: pointer;
+z-index: 1000;
+display: flex;
+column-gap: 0.8rem;
+}
+.header-icon .bx{
+color: var(--bg-color);
+}
+
+.header-icon .bx:hover{
+color: var(--main-color);
+}
+#menu-icon{
+color: var(--bg-color);
+font-size: 24px;
+z-index: 100001;
+cursor: pointer;
+display: none;
+}
+.search-box{
+position: absolute;
+top: -100%;
+left: 50%;
+transform: translate(-50%);
+background: var(--bg-color);
+width: 100%;
+}
+.search-box.active{
+top: 110%;
+box-shadow: var(--box-shadow);
+transition: 0.2s all linear; 
+}
+.search-box input{
+padding: 20px;
+border: none;
+outline: none;
+width: 100%;
+font-size: 1rem;
+color: var(--main-color);
+}
+.search-box input::placeholder{
+font-size: 1rem;
+font-weight: 500;
+}
+.home{
+width: 100%;
+min-height: 100vh;
+background: url(https://img.freepik.com/free-vector/top-view-cup-coffee-with-roasted-beans_52683-32340.jpg?w=2000);
+background-repeat: no-repeat;
+background-size: cover;
+background-position: center;
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(17rem, auto));
+align-items: center;
+gap: 1.5rem;
+
+}
+.home-text h1{
+font-size: 3rem;
+color: var(--main-color);
+text-transform: uppercase;
+letter-spacing: 1px;
+font-weight: 1500;
+}
+.home-text p{
+font-size: 0.938rem;
+color: var(--bg-color);
+margin: 0.5rem 0 1.4rem;
+font-weight: bold;
+}
+.btn{
+padding: 10px 40px;
+border-radius: 0.3rem;
+background: var(--main-color);
+color: var(--bg-color);
+font-weight: 700;
+}
+.btn:hover{
+  background: #8a6f4d;
+}
+.about{
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(17rem, auto));
+gap: 1.5rem;
+}
+.about-img img{
+border-radius: 0.5rem;
+}
+.about-text h2{
+font-size: 1.8rem;
+text-transform: uppercase;
+font-weight: 700;
+}
+.about-text p{
+font-size: 1.2rem;
+margin: 0.5rem 0 1.1rem;
+}
+.heading{
+text-align: center;
+}
+.heading h2{
+font-size: 1.8rem;
+text-transform: uppercase;
+}
+.products-container{
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(280px, auto));
+gap: 1.5rem;
+margin-top: 2rem;
+}
+.products-container .box{
+position: relative;
+padding: 10px;
+display: flex;
+flex-direction: column;
+justify-content: center;
+border-radius: 0.5rem;
+box-shadow: var(--box-shadow);
+}
+.products-container img{
+width: 100%;
+height: 250%;
+object-fit: contain;
+object-position: center;
+padding: 20px;
+background: #f1f1f1;
+border-radius: 0.5rem;
+}
+.products-container .box h3{
+font-size: 1rem;
+font-weight: 600;
+text-transform: uppercase;
+margin: 0.5rem 0 0.5rem;
+}
+.products-container .box .content{
+display: flex;
+align-items: center;
+justify-content: space-around;
+}
+.products-container .box .content span{
+padding: 0 1rem;
+color: var(--bg-color);
+background: var(--main-color);
+border-radius: 4px;
+font-weight: 500;
+}
+.products-container .box .content a{
+padding: 0 1rem;
+color: var(--text-color);
+border: 2px solid var(--main-color);
+border-radius: 4px;
+text-transform: uppercase;
+}
+.products-container .box .content a:hover{
+background: var(--main-color);
+color: var(--bg-color);
+transition: 0.2s all linear;
+}
+.customers-container{
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(280px, auto));
+gap: 1.5rem;
+margin-top: 2rem;
+}
+.customers-container .box{
+padding: 20px;
+box-shadow: var(--box-shadow);
+border-radius: 0.5rem;
+text-align: center;
+}
+.stars .bx{
+color: var(--main-color);
+}
+.customers-container .box h2{
+font-size: 1.2rem;
+font-weight: 600;
+margin: 0.5rem 0 0.5rem;
+}
+.customers-container .box p{
+font-size: 0.938rem;
+}
+.customers-container .box img{
+width: 70px;
+height: 70px;
+border-radius: 50%;
+object-fit: cover;
+}
+.customers-container .box:hover{
+background: var(--second-color);
+transition: 0.2s all linear;
+}
+.footer{
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(240px, auto));
+gap: 1.5rem;
+}
+.footer-box h2{
+font-size: 1.2rem;
+font-weight: 600;
+margin-bottom: 10px;
+}
+.footer-box p{
+font-size: 0.938rem;
+margin-bottom: 10px;
+}
+.social{
+display: flex;
+align-items: center;
+column-gap: 0.5rem;
+}
+.social a .bx{
+font-size: 24px;
+color: var(--text-color);
+padding: 10px;
+background: var(--second-color);
+border-radius: 0.2rem;
+}
+.social a .bx:hover{
+background: var(--main-color);
+color: var(--bg-color);
+}
+.footer-box h3{
+font-weight: 600;
+margin-bottom: 10px;
+}
+.footer-box li a{
+color: var(--text-color);
+}
+.footer-box li a:hover{
+color: var(--main-color);
+}
+.contact{
+display: flex;
+flex-direction: column;
+row-gap: 0.5rem;
+}
+.contact span{
+display: flex;
+align-items: center;
+}
+.contact i{
+font-size: 20px;
+margin-bottom: 1rem;
+}
+.copyright{
+padding: 20px;
+text-align: center;
+background: var(--second-color);
+}
+@media (max-width: 1058px) {
+header{
+    padding: 16px 60px;
+}
+section{
+    padding: 50px 60px;
+}
+.home-text h1{
+    font-size: 2.4rem;
+}
+
+}
+@media (max-width: 991px) {
+header{
+    padding: 16px 4%;
+}
+section{
+    padding: 50px 4%;
+}
+.home-text h1{
+    font-size: 2rem;
+}
+
+}
+@media (max-width: 768px){
+header{
+    padding: 12px 4%;
+}
+#menu-icon{
+    display: initial;
+}
+.navbar{
+    position: absolute;
+    top: -570px;
+    left: 0;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    background: var(--second-color);
+    row-gap: 1.4rem;
+    padding: 20px;
+    transition: 0.3s;
+    text-align: center;
+}
+.navbar a{
+    color: var(--text-color);
+}
+.navbar a:hover{
+    color: var(--bg-color);
+}
+.navbar.active{
+    top: 100%;
+}
+.about{
+    align-items: center;
+}
+}
+@media (max-width: 360px){
+header{
+    padding: 11px 4%;
+}
+.logo img{
+    width: 45px;
+}
+.home-text{
+    padding: 15px;
+}
+.home-text h1{
+    font-size: 1.4rem;
+}
+.home-text p{
+    font-size: 00.8rem;
+    font-weight: 300;
+}
+.about-img{
+    order: 2;
+}
+.about-text{
+    text-align: center;
+}
+.about-text h2{
+    font-size: 1.2rem;
+}
+.heading h2{
+    font-size: 1.2rem;
+}
+}
+
+
+</style>
+
+<body>
+	<!-- Navbar -->
+	<header>
+		<a href="#" class="logo">
+			<img src="https://www.pngitem.com/pimgs/m/565-5659987_coffee-cup-coffee-milk-clip-art-creative-coffee.png">
+		</a>
+
+		<!-- Menu-Icon -->
+		<i class="bx bx-menu" id="menu-icon"></i>
+		<!-- Links -->
+		<ul class="navbar">
+			<li><a href="#home">Home</a></li>
+			<li><a href="#about">About</a></li>
+			<li><a href="#products">Products</a></li>
+			<li><a href="#customers">Customers</a></li>
+		</ul>
+
+		<!-- Icon -->
+		<div class="header-icon">
+			<i class="bx bx-cart-alt" ></i>
+			<i class="bx bx-search" id="search-icon"></i>
+		</div>
+		<!-- Search Box -->
+		<div class="search-box">
+			<input type="search" name="" id="" placeholder="Espresso...">
+		</div>
+	</header>
+	<!-- Home -->
+	<section class="home" id="home">
+		<div class="home-text">
+			<h1>You deserve a <br>coffee break every day</h1>
+			<p>"Brewing up a Storm - Our Coffee Will Keep You Going!"</p>
+			<a href="#" class="btn">Shop Now</a>
+		</div>
+		<div class="home=img">
+			<img src=" ">
+		</div>
+	</section>
+
+    <!--About-->
+    <section class="about" id="about">
+        <div class="about-img">
+            <img src="https://www.delicozy.in/wp-content/uploads/2022/05/Top-5-Interesting-Facts-about-Coffee-Delicozy.jpg" alt="">
+        </div>
+        <div class="about-text">
+            <h2>Our History</h2>
+            <p>Welcome to our coffee shop!  Our coffee is sourced from around the world and roasted to perfection.</p>
+            <p>We offer a wide variety of coffee beans and blends, as well as flavored coffees and teas.</p>
+            <p>Thank you for choosing us for your coffee needs!</p>
+            <a href="#" class="btn">Learn More</a>
+        </div>
+    </section>
+    <!-- Products -->
+    <section class="products" id="products">
+        <div class="heading">
+            <h2>Our Popular Products</h2>
+        </div>
+        <!-- Container -->
+        <div class="products-container">
+            <div class="box">
+                <img src="https://goodmockups.com/wp-content/uploads/2018/08/Free-Paper-Coffee-Cup-Packaging-Mockup-PSD-Set.jpg" alt="">
+                <h3>Americano Pure</h3>
+                <div class="content">
+                    <span>$30</span>
+                    <a href="#">Add to cart</a>
+                </div>
+            </div>
+            <div class="box">
+                <img src="https://images.squarespace-cdn.com/content/v1/5811b29bb8a79b740e329a5c/1627028748602-HOJGAMH8X8KK2VDP6ONC/matte-coffee-bag-mockup-template.png?format=2500w" alt="">
+                <h3>Americano Pure</h3>
+                <div class="content">
+                    <span>$30</span>
+                    <a href="#">Add to cart</a>
+                </div>
+            </div>
+            <div class="box">
+                <img src="https://i.pinimg.com/originals/38/7e/01/387e014532af428a1d297754044dcaaf.jpg" alt="">
+                <h3>Americano Pure</h3>
+                <div class="content">
+                    <span>$30</span>
+                    <a href="#">Add to cart</a>
+                </div>
+            </div>
+            <div class="box">
+                <img src="https://creatoom.com/wp-content/uploads/2021/12/pouch-mockup-with-coffee-beans-on-the-floor-front-view.jpg" alt="">
+                <h3>Americano Pure</h3>
+                <div class="content">
+                    <span>$30</span>
+                    <a href="#">Add to cart</a>
+                </div>
+            </div>
+            <div class="box">
+                <img src="https://img.freepik.com/premium-psd/paper-bag-with-coffee-mock-up_23-2148884501.jpg?w=2000" alt="">
+                <h3>Americano Pure</h3>
+                <div class="content">
+                    <span>$30</span>
+                    <a href="#">Add to cart</a>
+                </div>
+            </div>
+            <div class="box">
+                <img src="https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/3c79dd121120281.60bf7fae1d99c.jpg" alt="">
+                <h3>Americano Pure</h3>
+                <div class="content">
+                    <span>$30</span>
+                    <a href="#">Add to cart</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--Customers-->
+    <section class="customers" id="customers">
+        <div class="heading">
+            <h2>Our Customers</h2>
+        </div>
+        <!-- Container -->
+        <div class="customers-container">
+            <div class="box">
+                <div class="stars">
+                    <i class="bx bxs-star"></i>
+                    <i class="bx bxs-star"></i>
+                    <i class="bx bxs-star"></i>
+                    <i class="bx bxs-star"></i>
+                    <i class="bx bxs-star-half"></i>
+                </div>
+                <p>The beans are fresh and have a rich, bold flavor.</p>
+                <h2>Akira Nakamura</h2>
+                <img src="https://i.pinimg.com/736x/57/3f/22/573f22a1aa17b366f5489745dc4704e1.jpg" alt="">
+            </div>
+            <div class="box">
+                <div class="stars">
+                    <i class="bx bxs-star"></i>
+                    <i class="bx bxs-star"></i>
+                    <i class="bx bxs-star"></i>
+                    <i class="bx bxs-star"></i>
+                    <i class="bx bxs-star-half"></i>
+                </div>
+                <p>The coffee was fresh and delicious, and the selection was great. The delivery was quick and efficient. I would definitely recommend this online coffee shop to everyone!</p>
+                <h2>Kyle Greenleaf</h2>
+                <img src="data:image/jpeg;base64,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" alt="">
+            </div>
+            <div class="box">
+                <div class="stars">
+                    <i class="bx bxs-star"></i>
+                    <i class="bx bxs-star"></i>
+                    <i class="bx bxs-star"></i>
+                    <i class="bx bxs-star"></i>
+                    <i class="bx bxs-star-half"></i>
+                </div>
+                <p>Shipping was very fast. I especially liked that they offered a wide variety of specialty coffees from all around the world. I would definitely recommend this online coffee shop to anyone looking for a great selection of coffees at a great price.</p>
+                <h2>Alexandra Parker</h2>
+                <img src="https://pub-static.fotor.com/assets/projects/pages/d5bdd0513a0740a8a38752dbc32586d0/fotor-03d1a91a0cec4542927f53c87e0599f6.jpg" alt="">
+            </div>
+        </div>
+    </section>
+    <section class="footer">
+        <div class="footer-box">
+            <h2>Coffee Shop</h2>
+            <p>Thank you for visiting our coffee shop! We hope you enjoyed your visit and that you'll come back soon!
+
+                Have a great day!</p>
+                <div class="social">
+                    <a href="#"><i class="bx bxl-facebook"></i></a>
+                    <a href="#"><i class="bx bxl-instagram"></i></a>
+                    <a href="#"><i class="bx bxl-github"></i></a>
+                    <a href="#"><i class="bx bxl-twitter"></i></a>
+                </div>
+        </div>
+        <div class="footer-box">
+            <h2>Support</h2>
+            <li><a href="#">Product</a></li>
+            <li><a href="#">Help & Support</a></li>
+            <li><a href="#">Return Policy</a></li>
+            <li><a href="#">Terms Of Use</a></li>
+            <li><a href="#">Product</a></li>
+        </div>
+        <div class="footer-box">
+            <h3>View Guides</h3>
+            <li><a href="#">Features</a></li>
+            <li><a href="#">Careers</a></li>
+            <li><a href="#">Blog Post</a></li>
+            <li><a href="#">Our Branches</a></li>
+        </div>
+        <div class="footer-box">
+            <h3>Contact</h3>
+            <div class="contact">
+                <span><i class="bx bxs-map"></i>250 New York City, USA 10001</span>
+                <span><i class="bx bxs-phone"></i>+1 444 744 8444</span>
+                <span><i class="bx bxs-envelope"></i>coffee@shop.com</span>
+            </div>
+        </div>
+    </section>
+    <!-- Copyright -->
+    <div class="copyright">
+        <p>@Nightburn</p>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+	<!-- Link to JS -->
+	<script src="main.js"></script>
+</body>
+</html>
